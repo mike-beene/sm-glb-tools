@@ -1,7 +1,7 @@
 import { NodeIO, Logger, ImageUtils, BufferUtils, Transform } from "@gltf-transform/core";
 // import { ao, weld, dedup, inspect } from "@gltf-transform/functions";
 import { toktx, Mode, Filter, draco } from "@gltf-transform/cli";
-import { HubsComponents } from "./HubsComponents";
+import { HubsComponents, SMComponents } from "./HubsComponents";
 import { MozLightmap } from "./MozLightmap";
 import { MozTextureRGBE } from "./MozTextureRGBE";
 import { KHRONOS_EXTENSIONS, DracoMeshCompression } from "@gltf-transform/extensions";
@@ -146,7 +146,7 @@ async function optimizeFile(inputFile: string, outputFile: string, { logger, tex
 
   const io = new NodeIO()
     .registerExtensions(KHRONOS_EXTENSIONS)
-    .registerExtensions([HubsComponents, MozLightmap, MozTextureRGBE])
+    .registerExtensions([SMComponents, HubsComponents, MozLightmap, MozTextureRGBE])
     .registerExtensions([DracoMeshCompression])
     .registerDependencies({
         'draco3d.decoder': await draco3d.createDecoderModule(),
